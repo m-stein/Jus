@@ -8,7 +8,6 @@
         "emitDeclarationOnly": true,
         "outFile": "types/jus.d.ts",
         "rootDir": "src",
-        "noImplicitAny": true
     },
     "include": ["src/**/*.js"],
     "exclude": ["node_modules"]
