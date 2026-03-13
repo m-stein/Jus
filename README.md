@@ -20,7 +20,7 @@ make sure to add it to the "include" array in your jsconfig.json file.
 
 ### Update the type declarations file before committing changes
 
-! > tsc
+! > npm run buildTypes
 
 ### Check for newer versions of dependencies and set them
 

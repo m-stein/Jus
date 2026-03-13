@@ -4,7 +4,8 @@
     "version": "1.0.0",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "buildTypes": "tsc && node scripts/fix_dts_paths.js && prettier --write types/jus.d.ts"
     },
     "keywords": [],
     "author": "",
