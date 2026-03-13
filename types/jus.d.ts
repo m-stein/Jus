@@ -1,3 +1,21 @@
+declare module 'jus/audio_file.js' {
+    export class AudioFile {
+        /**
+         * @param {Document} htmlDocument
+         * @param {string} relPath
+         * @param {(a: AudioFile) => void} onLoaded
+         */
+        constructor(
+            htmlDocument: Document,
+            relPath: string,
+            onLoaded: (a: AudioFile) => void
+        );
+        relPath: string;
+        onLoaded: (a: AudioFile) => void;
+        htmlElement: HTMLAudioElement;
+        onCanPlayThrough: () => void;
+    }
+}
 declare module 'jus/json_file.js' {
     export class JsonFile {
         /**
