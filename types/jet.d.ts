@@ -216,7 +216,7 @@ declare module 'jet/drawing_context.js' {
          * @param {HTMLCanvasElement} canvas
          */
         constructor(canvas: HTMLCanvasElement);
-        _canvas: HTMLCanvasElement;
+        canvas: HTMLCanvasElement;
         canvasContext: CanvasRenderingContext2D;
         position: Vector2;
         /**
@@ -255,7 +255,7 @@ declare module 'jet/drawing_context.js' {
 declare module 'jet/game_object.js' {
     export class GameObject {
         /**
-         * @param {import('jet/vector_2.js').Vector2} position
+         * @param {import('./vector_2.js').Vector2} position
          * @param {string} label
          */
         constructor(position: import('jet/vector_2.js').Vector2, label: string);
@@ -277,7 +277,7 @@ declare module 'jet/game_object.js' {
          */
         updateChildren(elapsedMs: number): void;
         /**
-         * @param {import('jet/drawing_context.js').DrawingContext} drawingContext
+         * @param {import('./drawing_context.js').DrawingContext} drawingContext
          */
         drawChildren(
             drawingContext: import('jet/drawing_context.js').DrawingContext
@@ -289,7 +289,7 @@ declare module 'jet/game_object.js' {
         update(_elapsedMs: number): void;
         /**
          * @abstract
-         * @param {import('jet/drawing_context.js').DrawingContext} _drawingContext
+         * @param {import('./drawing_context.js').DrawingContext} _drawingContext
          */
         draw(
             _drawingContext: import('jet/drawing_context.js').DrawingContext
