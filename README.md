@@ -39,7 +39,7 @@ And then import from the engine like this:
 
 ### Update the type declarations file before committing changes
 
-    npm run buildTypes
+    npm run buildDtsFile
 
 ### Check for newer versions of dependencies and set them
 

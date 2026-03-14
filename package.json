@@ -5,7 +5,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "eslint .",
-        "buildTypes": "tsc && node scripts/fix_dts_paths.js && prettier --write types/jet.d.ts"
+        "buildDtsFile": "tsc && node scripts/fix_dts_paths.js && prettier --write types/jet.d.ts"
     },
     "keywords": [],
     "author": "",
