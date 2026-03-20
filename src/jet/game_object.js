@@ -26,6 +26,15 @@ export class GameObject {
     }
 
     /**
+     * @param {((b: import('./game_object.js').GameObject) => void)} func
+     */
+    forEachChild(func) {
+        for (let idx = this._children.length - 1; idx >= 0; idx--) {
+            func(this._children[idx]);
+        }
+    }
+
+    /**
      * @param {GameObject} child
      */
     removeChild(child) {

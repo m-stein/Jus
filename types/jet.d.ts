@@ -269,6 +269,12 @@ declare module 'jet/game_object.js' {
          */
         addChild(child: GameObject, index?: number | null): void;
         /**
+         * @param {((b: import('./game_object.js').GameObject) => void)} func
+         */
+        forEachChild(
+            func: (b: import('jet/game_object.js').GameObject) => void
+        ): void;
+        /**
          * @param {GameObject} child
          */
         removeChild(child: GameObject): void;
