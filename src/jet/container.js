@@ -1,7 +1,7 @@
 import { GameObject } from 'jet/game_object.js';
 import { Vector2 } from 'jet/vector_2.js';
 
-export class Group extends GameObject {
+export class Container extends GameObject {
 
     constructor() {
         super(new Vector2(0, 0), 'Group');
