@@ -346,6 +346,12 @@ declare module 'jet/game_engine.js' {
     }
     import { DrawingContext } from 'jet/drawing_context.js';
 }
+declare module 'jet/group.js' {
+    export class Group extends GameObject {
+        constructor();
+    }
+    import { GameObject } from 'jet/game_object.js';
+}
 declare module 'jet/image_file.js' {
     export class ImageFile {
         /**
