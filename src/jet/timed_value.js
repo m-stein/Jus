@@ -1,4 +1,6 @@
+import { GameObject } from './game_object.js';
 import { randomInt } from './math.js';
+import { Vector2 } from './vector_2.js';
 
 /**
  * @template T
@@ -10,11 +12,12 @@ import { randomInt } from './math.js';
 /**
  * @template T
  */
-export class TimedValue {
+export class TimedValue extends GameObject {
     /**
      * @param {TimedValuePhase<T>[]} phases
      */
     constructor(phases) {
+        super(new Vector2(0, 0), "TimedValue");
         this._phases = phases;
         this._phaseIdx = 0;
         this._remainingTimeMs = 0;
