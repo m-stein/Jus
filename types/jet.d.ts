@@ -1,4 +1,4 @@
-declare module 'jet/vector_2.js' {
+declare module "jet/vector_2" {
     export class Vector2 {
         /**
          * @param {number} x
@@ -50,7 +50,7 @@ declare module 'jet/vector_2.js' {
         toString(): string;
     }
 }
-declare module 'jet/math.js' {
+declare module "jet/math" {
     /**
      * @param {number} src
      * @param {number} dst
@@ -64,11 +64,7 @@ declare module 'jet/math.js' {
      * @param {number} factor
      * @returns {Vector2}
      */
-    export function lerpVec2(
-        src: Vector2,
-        dst: Vector2,
-        factor: number
-    ): Vector2;
+    export function lerpVec2(src: Vector2, dst: Vector2, factor: number): Vector2;
     /**
      * @param {Vector2} vec
      * @returns {Vector2}
@@ -86,35 +82,34 @@ declare module 'jet/math.js' {
      * @param {number} maxExclusive
      * @returns {number}
      */
-    export function randomInt(
-        minInclusive: number,
-        maxExclusive: number
-    ): number;
+    export function randomInt(minInclusive: number, maxExclusive: number): number;
     /**
      * @param {Vector2} coord
      * @param {number} matrixSize
      * @param {number} numRotations
      * @returns {Vector2}
      */
-    export function rotateQuadrMatrix2CoordClockwise(
-        coord: Vector2,
-        matrixSize: number,
-        numRotations: number
-    ): Vector2;
+    export function rotateQuadrMatrix2CoordClockwise(coord: Vector2, matrixSize: number, numRotations: number): Vector2;
     /**
      * @param {number} degrees
      * @returns {Vector2}
      */
     export function angleToUnitVector(degrees: number): Vector2;
-    import { Vector2 } from 'jet/vector_2.js';
+    import { Vector2 } from "jet/vector_2";
 }
-declare module 'jet/array.js' {
+declare module "jet/array" {
     /**
      * @template T
      * @param {T[]} array
      * @param {T} item
      */
     export function removeItem<T>(array: T[], item: T): void;
+    /**
+     * @template T
+     * @param {T[]} array
+     * @param {((T) => bool)} itemMatchesFn
+     */
+    export function removeFirstMatchingItem<T>(array: T[], itemMatchesFn: ((T: any) => bool)): void;
     /**
      * @template T
      * @param {T[]} array
@@ -133,10 +128,7 @@ declare module 'jet/array.js' {
      * @param {number} numItems
      * @returns {T[]}
      */
-    export function makeRandomSelection<T>(
-        availableItems: T[],
-        numItems: number
-    ): T[];
+    export function makeRandomSelection<T>(availableItems: T[], numItems: number): T[];
     /**
      * @template T
      * @param {T[]} array
@@ -144,25 +136,21 @@ declare module 'jet/array.js' {
      */
     export function lastItem<T>(array: T[]): T;
 }
-declare module 'jet/audio_file.js' {
+declare module "jet/audio_file" {
     export class AudioFile {
         /**
          * @param {Document} htmlDocument
          * @param {string} relPath
          * @param {(a: AudioFile) => void} onLoaded
          */
-        constructor(
-            htmlDocument: Document,
-            relPath: string,
-            onLoaded: (a: AudioFile) => void
-        );
+        constructor(htmlDocument: Document, relPath: string, onLoaded: (a: AudioFile) => void);
         relPath: string;
         onLoaded: (a: AudioFile) => void;
         htmlElement: HTMLAudioElement;
         onCanPlayThrough: () => void;
     }
 }
-declare module 'jet/char.js' {
+declare module "jet/char" {
     /**
      * @param {string} start
      * @param {string} end
@@ -170,7 +158,7 @@ declare module 'jet/char.js' {
      */
     export function charRange(start: string, end: string): string[];
 }
-declare module 'jet/rectangle.js' {
+declare module "jet/rectangle" {
     export class Rectangle {
         /**
          * @param {Vector2} position
@@ -213,9 +201,9 @@ declare module 'jet/rectangle.js' {
          */
         bottomCenter(): Vector2;
     }
-    import { Vector2 } from 'jet/vector_2.js';
+    import { Vector2 } from "jet/vector_2";
 }
-declare module 'jet/drawing_context.js' {
+declare module "jet/drawing_context" {
     export class DrawingContext {
         /**
          * @param {HTMLCanvasElement} canvas
@@ -229,43 +217,31 @@ declare module 'jet/drawing_context.js' {
          * @param {import('./rectangle.js').Rectangle} srcRect
          * @param {import('./rectangle.js').Rectangle} dstRect
          */
-        drawImage(
-            image: HTMLImageElement,
-            srcRect: import('jet/rectangle.js').Rectangle,
-            dstRect: import('jet/rectangle.js').Rectangle
-        ): void;
+        drawImage(image: HTMLImageElement, srcRect: import("jet/rectangle").Rectangle, dstRect: import("jet/rectangle").Rectangle): void;
         /**
          * @param {string} text
          * @param {Vector2} position
          * @param {number} size
          * @param {CanvasTextAlign} alignment
          */
-        drawText(
-            text: string,
-            position: Vector2,
-            size: number,
-            alignment: CanvasTextAlign
-        ): void;
+        drawText(text: string, position: Vector2, size: number, alignment: CanvasTextAlign): void;
         /**
          * @param {import('./rectangle.js').Rectangle} rect
          * @param {string} color
          */
-        drawRect(
-            rect: import('jet/rectangle.js').Rectangle,
-            color: string
-        ): void;
+        drawRect(rect: import("jet/rectangle").Rectangle, color: string): void;
     }
-    import { Vector2 } from 'jet/vector_2.js';
+    import { Vector2 } from "jet/vector_2";
 }
-declare module 'jet/game_object.js' {
+declare module "jet/game_object" {
     export class GameObject {
         /**
          * @param {import('./vector_2.js').Vector2} position
          * @param {string} label
          */
-        constructor(position: import('jet/vector_2.js').Vector2, label: string);
+        constructor(position: import("jet/vector_2").Vector2, label: string);
         _label: string;
-        position: import('jet/vector_2.js').Vector2;
+        position: import("jet/vector_2").Vector2;
         /** @type {GameObject[]} */
         _children: GameObject[];
         /**
@@ -276,9 +252,7 @@ declare module 'jet/game_object.js' {
         /**
          * @param {((b: import('./game_object.js').GameObject) => void)} func
          */
-        forEachChild(
-            func: (b: import('jet/game_object.js').GameObject) => void
-        ): void;
+        forEachChild(func: ((b: import("jet/game_object").GameObject) => void)): void;
         /**
          * @param {GameObject} child
          */
@@ -290,9 +264,7 @@ declare module 'jet/game_object.js' {
         /**
          * @param {import('./drawing_context.js').DrawingContext} drawingContext
          */
-        drawChildren(
-            drawingContext: import('jet/drawing_context.js').DrawingContext
-        ): void;
+        drawChildren(drawingContext: import("jet/drawing_context").DrawingContext): void;
         /**
          * @abstract
          * @param {number} _elapsedMs
@@ -302,28 +274,24 @@ declare module 'jet/game_object.js' {
          * @abstract
          * @param {import('./drawing_context.js').DrawingContext} _drawingContext
          */
-        draw(
-            _drawingContext: import('jet/drawing_context.js').DrawingContext
-        ): void;
+        draw(_drawingContext: import("jet/drawing_context").DrawingContext): void;
     }
 }
-declare module 'jet/container.js' {
+declare module "jet/container" {
     export class Container extends GameObject {
         constructor();
     }
-    import { GameObject } from 'jet/game_object.js';
+    import { GameObject } from "jet/game_object.js";
 }
-declare module 'jet/enum.js' {
+declare module "jet/enum" {
     /**
      * @template {Record<string, number>} T
      * @param {T} baseEnum
      * @returns {{ readonly [K in keyof T]: T[K] }}
      */
-    export function createEnum<T extends Record<string, number>>(
-        baseEnum: T
-    ): { readonly [K in keyof T]: T[K] };
+    export function createEnum<T extends Record<string, number>>(baseEnum: T): { readonly [K in keyof T]: T[K]; };
 }
-declare module 'jet/game_engine.js' {
+declare module "jet/game_engine" {
     export class GameEngine {
         /**
          * @param {import('./game_object.js').GameObject} rootGameObj
@@ -331,18 +299,13 @@ declare module 'jet/game_engine.js' {
          * @param {HTMLCanvasElement} canvas
          * @param {number} updateIntervalMs
          */
-        constructor(
-            rootGameObj: import('jet/game_object.js').GameObject,
-            camera: import('jet/game_object.js').GameObject,
-            canvas: HTMLCanvasElement,
-            updateIntervalMs: number
-        );
+        constructor(rootGameObj: import("jet/game_object").GameObject, camera: import("jet/game_object").GameObject, canvas: HTMLCanvasElement, updateIntervalMs: number);
         _drawingContext: DrawingContext;
         _lastUpdateTimeMs: number;
         _accumulatedTimeMs: number;
         _updateIntervalMs: number;
-        _rootGameObj: import('jet/game_object.js').GameObject;
-        _camera: import('jet/game_object.js').GameObject;
+        _rootGameObj: import("jet/game_object").GameObject;
+        _camera: import("jet/game_object").GameObject;
         /** @type {null | number} */
         _updateCallId: null | number;
         _started: boolean;
@@ -355,26 +318,22 @@ declare module 'jet/game_engine.js' {
         start(): void;
         stop(): void;
     }
-    import { DrawingContext } from 'jet/drawing_context.js';
+    import { DrawingContext } from "jet/drawing_context";
 }
-declare module 'jet/image_file.js' {
+declare module "jet/image_file" {
     export class ImageFile {
         /**
          * @param {Document} htmlDocument
          * @param {string} relPath
          * @param {(a: ImageFile) => void} onLoaded
          */
-        constructor(
-            htmlDocument: Document,
-            relPath: string,
-            onLoaded: (a: ImageFile) => void
-        );
+        constructor(htmlDocument: Document, relPath: string, onLoaded: (a: ImageFile) => void);
         relPath: string;
         onLoaded: (a: ImageFile) => void;
         htmlElement: HTMLImageElement;
     }
 }
-declare module 'jet/json_file.js' {
+declare module "jet/json_file" {
     export class JsonFile {
         /**
          * @param {Document} htmlDocument
@@ -382,12 +341,7 @@ declare module 'jet/json_file.js' {
          * @param {string} relPath
          * @param {(file: JsonFile) => void} onLoaded
          */
-        constructor(
-            htmlDocument: Document,
-            jsonParser: JSON,
-            relPath: string,
-            onLoaded: (file: JsonFile) => void
-        );
+        constructor(htmlDocument: Document, jsonParser: JSON, relPath: string, onLoaded: (file: JsonFile) => void);
         _relPath: string;
         _onLoaded: (file: JsonFile) => void;
         _jsonParser: JSON;
@@ -402,7 +356,7 @@ declare module 'jet/json_file.js' {
         get data(): any;
     }
 }
-declare module 'jet/object_factory.js' {
+declare module "jet/object_factory" {
     /**
      * @typedef {{
      *   constructor: new (args: any) => any,
@@ -422,10 +376,7 @@ declare module 'jet/object_factory.js' {
          * @param {Record<string, string | number | boolean | null>} params
          * @returns {InstanceType<BlueprintDict[string]['constructor']>}
          */
-        createObj(
-            blueprintName: string,
-            params?: Record<string, string | number | boolean | null>
-        ): InstanceType<BlueprintDict[string]['constructor']>;
+        createObj(blueprintName: string, params?: Record<string, string | number | boolean | null>): InstanceType<BlueprintDict[string]["constructor"]>;
         /**
          * @param {{ class: string, params?: Record<string, any> }} json
          * @returns {InstanceType<BlueprintDict[string]['constructor']>}
@@ -433,7 +384,7 @@ declare module 'jet/object_factory.js' {
         createObjFromJson(json: {
             class: string;
             params?: Record<string, any>;
-        }): InstanceType<BlueprintDict[string]['constructor']>;
+        }): InstanceType<BlueprintDict[string]["constructor"]>;
     }
     export type Blueprint = {
         constructor: new (args: any) => any;
@@ -441,7 +392,7 @@ declare module 'jet/object_factory.js' {
     };
     export type BlueprintDict = Record<string, Blueprint>;
 }
-declare module 'jet/timeout.js' {
+declare module "jet/timeout" {
     export class Timeout extends GameObject {
         /**
          * @param {number} ms
@@ -462,9 +413,9 @@ declare module 'jet/timeout.js' {
          */
         running(): boolean;
     }
-    import { GameObject } from 'jet/game_object.js';
+    import { GameObject } from "jet/game_object";
 }
-declare module 'jet/periodic_timeout.js' {
+declare module "jet/periodic_timeout" {
     export class PeriodicTimeout extends GameObject {
         /**
          * @param {number} ms
@@ -487,10 +438,10 @@ declare module 'jet/periodic_timeout.js' {
          */
         running(): boolean;
     }
-    import { GameObject } from 'jet/game_object.js';
-    import { Timeout } from 'jet/timeout.js';
+    import { GameObject } from "jet/game_object";
+    import { Timeout } from "jet/timeout";
 }
-declare module 'jet/sprite.js' {
+declare module "jet/sprite" {
     export class Sprite extends GameObject {
         /**
          * @param {import('./image_file.js').ImageFile} image
@@ -500,15 +451,8 @@ declare module 'jet/sprite.js' {
          * @param {number=} atFrameIdx
          * @param {import('./vector_2.js').Vector2} framePadding
          */
-        constructor(
-            image: import('jet/image_file.js').ImageFile,
-            frameSize?: import('jet/vector_2.js').Vector2 | undefined,
-            numColumns?: number | undefined,
-            numRows?: number | undefined,
-            atFrameIdx?: number | undefined,
-            framePadding?: import('jet/vector_2.js').Vector2
-        );
-        _image: import('jet/image_file.js').ImageFile;
+        constructor(image: import("jet/image_file").ImageFile, frameSize?: import("jet/vector_2").Vector2 | undefined, numColumns?: number | undefined, numRows?: number | undefined, atFrameIdx?: number | undefined, framePadding?: import("jet/vector_2").Vector2);
+        _image: import("jet/image_file").ImageFile;
         _frameSize: Vector2;
         _framePadding: Vector2;
         _numColumns: number;
@@ -530,22 +474,18 @@ declare module 'jet/sprite.js' {
          */
         goToFrame(index: number): number;
     }
-    import { GameObject } from 'jet/game_object.js';
-    import { Vector2 } from 'jet/vector_2.js';
+    import { GameObject } from "jet/game_object";
+    import { Vector2 } from "jet/vector_2";
 }
-declare module 'jet/sprite_font.js' {
+declare module "jet/sprite_font" {
     export class SpriteFontSource {
         /**
          * @param {import('./image_file.js').ImageFile} image
          * @param {Vector2} charSize
          * @param {Map<Vector2, string[]>} chars
          */
-        constructor(
-            image: import('jet/image_file.js').ImageFile,
-            charSize: Vector2,
-            chars: Map<Vector2, string[]>
-        );
-        image: import('jet/image_file.js').ImageFile;
+        constructor(image: import("jet/image_file").ImageFile, charSize: Vector2, chars: Map<Vector2, string[]>);
+        image: import("jet/image_file").ImageFile;
         charSize: Vector2;
         /** @type {Map<string, Vector2>} */
         charPositions: Map<string, Vector2>;
@@ -556,11 +496,7 @@ declare module 'jet/sprite_font.js' {
          * @param {number} yShift
          * @param {number} scalingFactor
          */
-        constructor(
-            src: SpriteFontSource,
-            yShift: number,
-            scalingFactor?: number
-        );
+        constructor(src: SpriteFontSource, yShift: number, scalingFactor?: number);
         _src: SpriteFontSource;
         _yShift: number;
         _dstCharSize: Vector2;
@@ -577,25 +513,17 @@ declare module 'jet/sprite_font.js' {
          * @param {Vector2} position
          * @param {string} c
          */
-        drawChar(
-            drawingContext: import('jet/drawing_context.js').DrawingContext,
-            position: Vector2,
-            c: string
-        ): void;
+        drawChar(drawingContext: import("jet/drawing_context").DrawingContext, position: Vector2, c: string): void;
         /**
          * @param {import('./drawing_context.js').DrawingContext} drawingContext
          * @param {Vector2} position
          * @param {string} str
          */
-        drawString(
-            drawingContext: import('jet/drawing_context.js').DrawingContext,
-            position: Vector2,
-            str: string
-        ): void;
+        drawString(drawingContext: import("jet/drawing_context").DrawingContext, position: Vector2, str: string): void;
     }
-    import { Vector2 } from 'jet/vector_2.js';
+    import { Vector2 } from "jet/vector_2";
 }
-declare module 'jet/timed_value.js' {
+declare module "jet/timed_value" {
     /**
      * @template T
      * @typedef {object} TimedValuePhase
@@ -630,5 +558,5 @@ declare module 'jet/timed_value.js' {
         ms: number;
         value: T;
     };
-    import { GameObject } from 'jet/game_object.js';
+    import { GameObject } from "jet/game_object";
 }
