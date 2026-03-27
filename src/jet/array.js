@@ -16,20 +16,6 @@ export function removeItem(array, item) {
 /**
  * @template T
  * @param {T[]} array
- * @param {((T) => bool)} itemMatchesFn
- */
-export function removeFirstMatchingItem(array, itemMatchesFn) {
-    for (let idx = array.length - 1; idx > 0; idx--) {
-        if (itemMatchesFn(array[idx])) {
-            array.splice(idx, 1);
-            return;
-        }
-    }
-}
-
-/**
- * @template T
- * @param {T[]} array
  * @returns {T}
  */
 export function getRandomItem(array) {
