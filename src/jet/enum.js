@@ -1,28 +1,30 @@
 /**
  * @template {Record<string, number>} T
+ * @typedef {{
+ *   readonly [K in keyof T]: T[K]
+ * } & {
+ *   fromString(key: string): T[keyof T],
+ * }} EnumType
+ */
+
+/**
+ * @template {Record<string, number>} T
  * @param {T} baseEnum
- * @returns {{ readonly [K in keyof T]: T[K] }}
+ * @returns {EnumType<T>}
  */
 export function createEnum(baseEnum) {
-    return new Proxy(baseEnum, {
+    const result = { ...baseEnum,
         /**
-         * @param {T} target
-         * @param {string | symbol} name
+         * @param {string} key
          * @returns {T[keyof T]}
          */
-        get(target, name) {
-            if (!Object.prototype.hasOwnProperty.call(baseEnum, name)) {
-                throw new Error(
-                    `'${String(name)}' does not exist in the enum`
-                );
+        fromString(key) {
+            const value =  baseEnum[/** @type {keyof T} */ (key)];
+            if (value === undefined) {
+                throw new Error(`'${key}' does not exist in the enum`);
             }
-            return /** @type {T[keyof T]} */ (
-                target[/** @type {keyof T} */ (name)]
-            );
+            return value;
         },
-
-        set(_target, _name, _value) {
-            throw new Error('Cannot add a new value to the enum');
-        },
-    });
+    };
+    return /** @type {EnumType<T>} */ (Object.freeze(result));
 }

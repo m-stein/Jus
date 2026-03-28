@@ -434,12 +434,25 @@ declare module 'jet/container.js' {
 declare module 'jet/enum.js' {
     /**
      * @template {Record<string, number>} T
+     * @typedef {{
+     *   readonly [K in keyof T]: T[K]
+     * } & {
+     *   fromString(key: string): T[keyof T],
+     * }} EnumType
+     */
+    /**
+     * @template {Record<string, number>} T
      * @param {T} baseEnum
-     * @returns {{ readonly [K in keyof T]: T[K] }}
+     * @returns {EnumType<T>}
      */
     export function createEnum<T extends Record<string, number>>(
         baseEnum: T
-    ): { readonly [K in keyof T]: T[K] };
+    ): EnumType<T>;
+    export type EnumType<T extends Record<string, number>> = {
+        readonly [K in keyof T]: T[K];
+    } & {
+        fromString(key: string): T[keyof T];
+    };
 }
 declare module 'jet/game_engine.js' {
     export class GameEngine {
