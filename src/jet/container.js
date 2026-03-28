@@ -1,5 +1,5 @@
-import { GameObject } from 'jet/game_object.js';
-import { Vector2 } from 'jet/vector_2.js';
+import { GameObject } from './game_object.js';
+import { Vector2 } from './vector_2.js';
 
 export class Container extends GameObject {
 
@@ -15,7 +15,7 @@ export class Container extends GameObject {
     }
 
     /**
-     * @param {import('jet/drawing_context.js').DrawingContext} drawingContext
+     * @param {import('./drawing_context.js').DrawingContext} drawingContext
      */
     draw(drawingContext) {
         this.drawChildren(drawingContext);

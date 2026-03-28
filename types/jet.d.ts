@@ -288,14 +288,6 @@ declare module 'jet/asset_manager.js' {
     import { AudioFile } from 'jet/audio_file.js';
     import { ImageFile } from 'jet/image_file.js';
 }
-declare module 'jet/char.js' {
-    /**
-     * @param {string} start
-     * @param {string} end
-     * @returns {string[]}
-     */
-    export function charRange(start: string, end: string): string[];
-}
 declare module 'jet/rectangle.js' {
     export class Rectangle {
         /**
@@ -432,6 +424,74 @@ declare module 'jet/game_object.js' {
             _drawingContext: import('jet/drawing_context.js').DrawingContext
         ): void;
     }
+}
+declare module 'jet/sprite.js' {
+    export class Sprite extends GameObject {
+        /**
+         * @param {import('./image_file.js').ImageFile} image
+         * @param {import('./vector_2.js').Vector2=} frameSize
+         * @param {number=} numColumns
+         * @param {number=} numRows
+         * @param {number=} atFrameIdx
+         * @param {import('./vector_2.js').Vector2} framePadding
+         */
+        constructor(
+            image: import('jet/image_file.js').ImageFile,
+            frameSize?: import('jet/vector_2.js').Vector2 | undefined,
+            numColumns?: number | undefined,
+            numRows?: number | undefined,
+            atFrameIdx?: number | undefined,
+            framePadding?: import('jet/vector_2.js').Vector2
+        );
+        _image: import('jet/image_file.js').ImageFile;
+        _frameSize: Vector2;
+        _framePadding: Vector2;
+        _numColumns: number;
+        _numRows: number;
+        _atFrameIdx: number;
+        /** @type {Map<number, Vector2>} */
+        _frameMap: Map<number, Vector2>;
+        _initializeFrameMap(): void;
+        /**
+         * @returns {number}
+         */
+        frameWidth(): number;
+        /**
+         * @returns {number}
+         */
+        frameHeight(): number;
+        /**
+         * @param {number} index
+         */
+        goToFrame(index: number): number;
+    }
+    import { GameObject } from 'jet/game_object.js';
+    import { Vector2 } from 'jet/vector_2.js';
+}
+declare module 'jet/camera.js' {
+    export class Camera extends GameObject {
+        /**
+         * @param {import('./image_file.js').ImageFile | null} backgroundImg
+         * @param {number} width
+         * @param {number} height
+         */
+        constructor(
+            backgroundImg: import('jet/image_file.js').ImageFile | null,
+            width: number,
+            height: number
+        );
+        backgroundSprite: Sprite | undefined;
+    }
+    import { GameObject } from 'jet/game_object.js';
+    import { Sprite } from 'jet/sprite.js';
+}
+declare module 'jet/char.js' {
+    /**
+     * @param {string} start
+     * @param {string} end
+     * @returns {string[]}
+     */
+    export function charRange(start: string, end: string): string[];
 }
 declare module 'jet/container.js' {
     export class Container extends GameObject {
@@ -631,49 +691,6 @@ declare module 'jet/periodic_timeout.js' {
     }
     import { GameObject } from 'jet/game_object.js';
     import { Timeout } from 'jet/timeout.js';
-}
-declare module 'jet/sprite.js' {
-    export class Sprite extends GameObject {
-        /**
-         * @param {import('./image_file.js').ImageFile} image
-         * @param {import('./vector_2.js').Vector2=} frameSize
-         * @param {number=} numColumns
-         * @param {number=} numRows
-         * @param {number=} atFrameIdx
-         * @param {import('./vector_2.js').Vector2} framePadding
-         */
-        constructor(
-            image: import('jet/image_file.js').ImageFile,
-            frameSize?: import('jet/vector_2.js').Vector2 | undefined,
-            numColumns?: number | undefined,
-            numRows?: number | undefined,
-            atFrameIdx?: number | undefined,
-            framePadding?: import('jet/vector_2.js').Vector2
-        );
-        _image: import('jet/image_file.js').ImageFile;
-        _frameSize: Vector2;
-        _framePadding: Vector2;
-        _numColumns: number;
-        _numRows: number;
-        _atFrameIdx: number;
-        /** @type {Map<number, Vector2>} */
-        _frameMap: Map<number, Vector2>;
-        _initializeFrameMap(): void;
-        /**
-         * @returns {number}
-         */
-        frameWidth(): number;
-        /**
-         * @returns {number}
-         */
-        frameHeight(): number;
-        /**
-         * @param {number} index
-         */
-        goToFrame(index: number): number;
-    }
-    import { GameObject } from 'jet/game_object.js';
-    import { Vector2 } from 'jet/vector_2.js';
 }
 declare module 'jet/sprite_font.js' {
     export class SpriteFontSource {

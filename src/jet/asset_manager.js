@@ -1,5 +1,5 @@
-import { AudioFile } from 'jet/audio_file.js';
-import { ImageFile } from 'jet/image_file.js';
+import { AudioFile } from './audio_file.js';
+import { ImageFile } from './image_file.js';
 
 export class AssetManager {
     /**
