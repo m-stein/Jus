@@ -144,6 +144,14 @@ declare module 'jet/array.js' {
      */
     export function lastItem<T>(array: T[]): T;
 }
+declare module 'jet/assertions.js' {
+    /**
+     * @template T
+     * @param {T} value
+     * @returns {asserts value is NonNullable<T>}
+     */
+    export function assertNotNull<T>(value: T): asserts value is NonNullable<T>;
+}
 declare module 'jet/audio_file.js' {
     export class AudioFile {
         /**
@@ -487,6 +495,26 @@ declare module 'jet/game_engine.js' {
         stop(): void;
     }
     import { DrawingContext } from 'jet/drawing_context.js';
+}
+declare module 'jet/html.js' {
+    /**
+     * @param {HTMLElement} elem
+     * @param {string} attr
+     * @returns {string}
+     */
+    export function getHtmlAttr(elem: HTMLElement, attr: string): string;
+    /**
+     * @template {HTMLElement} T
+     * @param {HTMLDocument} doc
+     * @param {string} id
+     * @param {new (...args: any[]) => T} type
+     * @returns {T}
+     */
+    export function getHtmlElem<T extends HTMLElement>(
+        doc: HTMLDocument,
+        id: string,
+        type: new (...args: any[]) => T
+    ): T;
 }
 declare module 'jet/json_file.js' {
     export class JsonFile {
